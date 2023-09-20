@@ -15,7 +15,7 @@ namespace YoutubeToSpotify.Controllers
             _spotifyAccountService = spotifyAccountService;
             _configuration = configuration;
         }
-        // GET: api/User
+        // GET: Test um Token von Spotify API zu erhalten
         [HttpGet]
         public async Task<string> Get()
         {
@@ -27,7 +27,7 @@ namespace YoutubeToSpotify.Controllers
         [HttpGet("{id}")]
         public string Get(int id)
         {
-            return $"user {id}";
+            return $"test {id}";
         }
 
         // POST api/<UserController>
