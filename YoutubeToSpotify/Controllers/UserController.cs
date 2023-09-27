@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using YoutubeToSpotify.Services;
+using SpotifyAPI.Web;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -9,18 +10,18 @@ namespace YoutubeToSpotify.Controllers
     [ApiController]
     public class UserController : ControllerBase
     {
-        private readonly ISpotifyAccountService _spotifyAccountService;
-        private readonly IConfiguration _configuration;
-        public UserController(ISpotifyAccountService spotifyAccountService, IConfiguration configuration) {
-            _spotifyAccountService = spotifyAccountService;
-            _configuration = configuration;
+        private readonly ISpotifyClient _spotifyClient;
+       
+        public UserController(ISpotifyClient spotifyClient) {
+            
+            _spotifyClient = spotifyClient;
         }
         // GET: Test um Token von Spotify API zu erhalten
         [HttpGet]
         public async Task<string> Get()
         {
-            var token = await _spotifyAccountService.GetSpotifyToken(_configuration["Spotify:ClientId"], _configuration["Spotify:ClientSecret"]);
-            return token;
+            var track = await _spotifyClient.Tracks.Get("3rMjvr9Ww1w4SaVrNATO55");
+            return track.Name;
         }
 
         // GET api/<UserController>/5

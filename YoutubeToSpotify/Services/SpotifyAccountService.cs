@@ -33,8 +33,8 @@ namespace YoutubeToSpotify.Services
             System.Console.WriteLine(test);
             using var responseStream = await response.Content.ReadAsStreamAsync();
             var authResult = await JsonSerializer.DeserializeAsync<SpotifyAuthenticationResult>(responseStream);
-            
-            return authResult.access_token;
+
+            return authResult.AccessToken;
             
         }
     }
